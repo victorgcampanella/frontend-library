@@ -1,4 +1,4 @@
-import styled, {keyframes, css} from 'styled-components'
+import styled, { keyframes, css } from 'styled-components';
 
 export const GeneralBody = styled.div`
   display: flex;
@@ -9,7 +9,7 @@ export const GeneralBody = styled.div`
     width: 100%;
     opacity: 0.2;
   }
-`
+`;
 
 export const ContainerBody = styled.div`
   width: 100%;
@@ -30,7 +30,7 @@ export const ContainerBody = styled.div`
       margin-right: 10px;
     }
   }
-`
+`;
 
 export const Form = styled.form`
   margin-top: 30px;
@@ -44,7 +44,7 @@ export const Form = styled.form`
     border-radius: 4px;
     font-size: 16px;
   }
-`
+`;
 
 const rotate = keyframes`
   from {
@@ -55,11 +55,11 @@ const rotate = keyframes`
   }
 `;
 
-export const SubmitButton = styled.button.attrs(props => ({
+export const SubmitButton = styled.button.attrs((props) => ({
   type: 'submit',
-  disabled: props.loading
+  disabled: props.loading,
 }))`
-  background: #4684BE;
+  background: #4684be;
   border: 0;
   padding: 0 15px;
   margin-left: 10px;
@@ -74,14 +74,14 @@ export const SubmitButton = styled.button.attrs(props => ({
     opacity: 0.6;
   }
 
-  ${props =>
+  ${(props) =>
     props.loading &&
     css`
       svg {
         animation: ${rotate} 2s linear infinite;
-      } 
+      }
     `}
-`
+`;
 
 export const List = styled.ul`
   list-style: none;
@@ -110,7 +110,7 @@ export const List = styled.ul`
     }
 
     .buttonSuccess {
-      background: #88DA66;
+      background: #88da66;
       height: 40px;
       width: 60px;
       border: 0;
@@ -123,7 +123,7 @@ export const List = styled.ul`
     }
 
     .buttonUpdate {
-      background: #6BD0F1;
+      background: #6bd0f1;
       height: 40px;
       width: 40px;
       border: 0;
@@ -135,7 +135,7 @@ export const List = styled.ul`
     }
 
     .buttonDelete {
-      background: #DED1C9;
+      background: #ded1c9;
       height: 40px;
       width: 40px;
       border: 0;
@@ -147,4 +147,4 @@ export const List = styled.ul`
       align-content: center;
     }
   }
-`
+`;
