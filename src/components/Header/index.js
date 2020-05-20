@@ -17,7 +17,7 @@ function Header() {
               <h1>Meu Perfil</h1>
             </div>
             <img
-              src="https://api.adorable.io/avatars/50/abott@adorable.png"
+              src="https://www.pngitem.com/pimgs/m/78-786293_1240-x-1240-0-avatar-profile-icon-png.png"
               alt="Administrador"
             />
           </Profile>

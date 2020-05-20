@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
 import {
   FaBook,
   FaPlus,
@@ -39,21 +40,27 @@ export default class Main extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
 
-    this.setState({ loading: true });
-
     const { newBook } = this.state;
 
-    await api.post('/books', {
-      name: newBook,
-    });
+    if (newBook === '') {
+      toast.error('O nome do livro não pode estar em branco!', {
+        className: 'toast-error',
+      });
+    } else {
+      this.setState({ loading: true });
 
-    const listbook = await api.get('books');
+      await api.post('/books', {
+        name: newBook,
+      });
 
-    this.setState({
-      newBook: '',
-      books: listbook.data,
-      loading: false,
-    });
+      const listbook = await api.get('books');
+
+      this.setState({
+        newBook: '',
+        books: listbook.data,
+        loading: false,
+      });
+    }
   };
 
   async handleDelete(e) {
@@ -64,12 +71,17 @@ export default class Main extends Component {
     this.setState({
       books: listbook.data,
     });
+
+    toast.success('O livro foi excluído!!', {
+      className: 'toast-success',
+    });
   }
 
   async handleOpenUpdate(e) {
     this.setState({
       isEdit: true,
       bookEdit: e._id,
+      nameBookUpdate: e.name,
     });
   }
 
@@ -80,18 +92,22 @@ export default class Main extends Component {
   async handleUpdate(e) {
     const { nameBookUpdate } = this.state;
 
-    await api.put(`/books/${e._id}`, {
-      name: nameBookUpdate,
-    });
+    if (nameBookUpdate === '') {
+      toast.error('O nome do livro não pode estar em branco!');
+    } else {
+      await api.put(`/books/${e._id}`, {
+        name: nameBookUpdate,
+      });
 
-    const listbook = await api.get('books');
+      const listbook = await api.get('books');
 
-    this.setState({
-      isEdit: false,
-      books: listbook.data,
-      bookEdit: '',
-      nameBookUpdate: '',
-    });
+      this.setState({
+        isEdit: false,
+        books: listbook.data,
+        bookEdit: '',
+        nameBookUpdate: '',
+      });
+    }
   }
 
   render() {
@@ -141,7 +157,7 @@ export default class Main extends Component {
                         <>
                           <input
                             type="text"
-                            placeholder={book.name}
+                            placeholder="Edite o nome do livro"
                             value={nameBookUpdate}
                             onChange={this.handleUpdateChange}
                           />
