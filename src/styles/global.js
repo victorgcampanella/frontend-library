@@ -40,5 +40,9 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
   }
 `;
